@@ -1,0 +1,50 @@
+# 2. CI/CD Pipeline (GitHub Actions)
+Automate everything or expect failure.
+Pipeline Goals
+Test every commit
+Simulate full launch
+Deploy to testnet automatically
+Verify contracts
+Workflow File
+YAML
+# .github/workflows/deploy.yml
+name: SAW Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install
+        run: npm install
+
+      - name: Compile
+        run: npx hardhat compile
+
+      - name: Run Tests
+        run: npx hardhat test
+
+      - name: Deploy to Testnet
+        run: npx hardhat run scripts/deploy.ts --network sepolia
+        env:
+          RPC_URL: ${{ secrets.RPC_URL }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Verify Contracts
+        run: npx hardhat verify --network sepolia
+Security Discipline
+Use GitHub Secrets only
+Never expose private keys
+Separate deploy key from treasury key
