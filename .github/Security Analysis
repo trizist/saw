@@ -1,0 +1,92 @@
+## 🔐 Security Analysis
+
+**Slither Results:**
+```bash
+# Run and paste output
+slither . --filter-paths 'node_modules|test'
+```
+
+- [ ] No new high/critical issues introduced
+- [ ] All findings documented or mitigated
+
+## 📝 Documentation
+
+- [ ] NatSpec comments added/updated (Solidity)
+- [ ] README updated (if user-facing changes)
+- [ ] API documentation updated (if applicable)
+- [ ] CHANGELOG.md entry added
+
+## 🔍 Code Quality
+
+- [ ] Code follows project style guide
+- [ ] No console.log/debugging statements
+- [ ] Functions are single-purpose
+- [ ] Variables are clearly named
+- [ ] Complexity is acceptable
+
+## 🌐 State Impact
+
+**Does this change affect protocol states?**
+
+- [ ] No state changes
+- [ ] State transitions modified (list affected states: _____)
+- [ ] Entropy aggregation changed
+- [ ] Commitment/reveal logic modified
+
+## 🚀 Deployment Considerations
+
+**If this affects smart contracts:**
+
+- [ ] Migration script prepared
+- [ ] Upgrade path documented (if using proxies)
+- [ ] Gas estimation updated
+- [ ] Testnet deployment verified
+- [ ] Mainnet deployment checklist completed
+
+## 🔐 Cryptographic Changes
+
+**If applicable:**
+
+- [ ] Hash functions reviewed
+- [ ] Signature schemes validated
+- [ ] Randomness sources verified
+- [ ] Post-quantum compatibility considered
+
+## 📸 Screenshots (if UI changes)
+
+<!-- Drag and drop screenshots here -->
+
+## 🔗 Related Issues
+
+<!-- Link to related issues, discussions, or PRs -->
+
+## 👥 Reviewers
+
+<!-- Tag specific reviewers if needed -->
+@trizist
+
+## 📜 License Compliance
+
+By submitting this PR, I confirm that:
+- [ ] My contribution is original work
+- [ ] I have the right to submit it under the MIT License
+- [ ] I agree to the Developer Certificate of Origin (DCO)
+- [ ] All files include SPDX-License-Identifier headers
+
+---
+
+## ⚠️ Pre-Merge Checklist (Maintainer Use Only)
+
+- [ ] Security review completed
+- [ ] All CI checks passing
+- [ ] Test coverage acceptable
+- [ ] Documentation updated
+- [ ] Changelog entry added
+- [ ] Deployment plan verified
+- [ ] Stakeholder approval obtained (if required)
+
+---
+
+**Thank you for contributing to SAW Protocol!** 🌊⚛️
+
+*Remember: Twelve States. One Truth. Zero Compromise on Security.*
