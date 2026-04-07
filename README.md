@@ -1,5 +1,6 @@
 ## SAW PROTOCOL
 Secure Atomic Wave Protocol: A Cryptographically Deterministic Token Launch Framework with Multi-Source Time Anchoring
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 1. GitHub Repository Structure
 
@@ -366,5 +367,3 @@ and proves fairness where it counts.
 
 No noise. No tricks.
 Just a system that can be verified from first block to last state.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
