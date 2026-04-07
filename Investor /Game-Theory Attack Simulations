@@ -1,0 +1,56 @@
+II. Investor / Game-Theory Attack Simulations
+Assume adversaries are smarter than you. Design accordingly.
+1. Whale Dominance Attack
+Goal: Acquire majority supply early
+Vector:
+Split capital across wallets (sybil)
+Mitigation:
+Quadratic allocation:
+Plain text
+allocation ∝ √stake
+Identity weighting (optional)
+Max cap per wallet cluster
+2. Commit Manipulation Attack
+Goal: Observe others, then adjust commitment
+Vector:
+Late commit sniping
+Mitigation:
+Strict commit deadline
+Hash-based commitments (no visibility)
+3. Reveal Griefing
+Goal: Reduce competition by not revealing
+Vector:
+Commit → don’t reveal → distort pool
+Mitigation:
+Penalize non-reveal:
+burn deposit
+redistribute to honest participants
+4. Entropy Prediction Attack
+Goal: Predict ordering
+Vector:
+Control entropy source
+Mitigation:
+Multi-source entropy (ETH + BTC + beacon)
+Delay entropy reveal until after commit phase
+5. MEV / Front-Run Attack
+Goal: Jump ahead in allocation or trading
+Mitigation:
+Commit/reveal hides intent
+Batch settlement
+Single execution block
+6. Post-Launch Dump Attack
+Goal: Crash price immediately
+Vector:
+Early participants exit
+Mitigation:
+Vesting tiers
+Liquidity depth buffers
+Treasury counterflow
+7. Narrative Attack (Underrated)
+Goal: Kill trust
+Vector:
+“It’s rigged” narrative
+Mitigation:
+Public verification dashboard
+Reproducible proofs
+Radical transparency
