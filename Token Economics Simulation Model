@@ -1,0 +1,59 @@
+# 4. Token Economics Simulation Model
+No guessing. Model the system before money enters.
+Simulation Goals
+Distribution fairness
+Whale resistance
+Participation incentives
+Core Variables
+Plain text
+Users (N)
+Commit Amount Distribution
+Entropy Randomness
+Allocation Formula
+Python Simulation
+Python
+import random
+import hashlib
+
+NUM_USERS = 1000
+
+users = [
+    {
+        "wallet": f"user_{i}",
+        "amount": random.randint(1, 100)
+    }
+    for i in range(NUM_USERS)
+]
+
+entropy = "seed123"
+
+def compute_order(user):
+    return hashlib.sha256((entropy + user["wallet"]).encode()).hexdigest()
+
+# Sort users by deterministic order
+sorted_users = sorted(users, key=compute_order)
+
+# Allocate proportionally
+total = sum(u["amount"] for u in users)
+
+allocations = []
+for u in sorted_users:
+    share = u["amount"] / total
+    allocations.append(share)
+
+# Metrics
+print("Top 10 allocations:", sorted(allocations, reverse=True)[:10])
+print("Gini approximation:", sum(allocations)/len(allocations))
+What to Analyze
+1. Fairness Curve
+Does ordering bias exist?
+2. Whale Dominance
+Top 1% allocation %
+3. Participation Incentive
+Small users still get meaningful share?
+Advanced Models
+Quadratic allocation:
+Plain text
+allocation ∝ sqrt(amount)
+Anti-sybil weighting
+Time-weighted commitments
