@@ -1,0 +1,80 @@
+I. Mainnet Launch Playbook
+Capital Strategy + Liquidity Engineering
+No theatrics. Precision execution. Capital flows must obey structure, not emotion.
+1. Capital Strategy (Pre-Launch Positioning)
+A. Capital Tranches
+Break capital into controlled layers:
+Tranche
+Purpose
+Allocation
+T1
+Protocol-Owned Liquidity (POL)
+40%
+T2
+Public Distribution (SAW States)
+40%
+T3
+Strategic Reserve
+10%
+T4
+Volatility Buffer
+10%
+Principle:
+Own your liquidity or the market owns you.
+B. Entry Control
+No open mint chaos
+Only SAW commit/reveal participants receive tokens
+Prevents mercenary capital flooding at T=0
+2. Liquidity Engineering
+A. Initial Pairing
+Pair token with:
+ETH (credibility)
+or stablecoin (stability)
+B. Liquidity Curve Design
+Avoid flat liquidity. Use staged depth:
+Plain text
+Price ↑
+│        Deep Liquidity
+│      ────────────────
+│    ──
+│  ──
+│──
+└──────────────→ Time
+Thin early liquidity → price discovery
+Gradually deepen → stability
+C. Protocol-Owned Liquidity (POL)
+Lock LP tokens (6–24 months)
+Controlled release:
+prevents rug suspicion
+stabilizes volatility
+D. Anti-Dump Mechanics
+Vesting for large allocations
+Time-delayed unlocks
+Optional dynamic tax (decays over time)
+3. Launch Sequence (Mainnet)
+T–24h
+Publish:
+final state hash (pre-commit)
+contract addresses
+entropy sources
+T–0 (State 8: Power)
+Atomic settlement executes
+Liquidity injected immediately
+T+5 min
+Trading enabled
+No whitelist, no insider delay
+T+24h
+First volatility stabilization
+Treasury begins passive market making
+4. Market Control Layer
+A. Treasury Behavior
+Never chase price
+Only:
+absorb shocks
+reinforce support zones
+B. Liquidity Expansion Triggers
+Increase LP when:
+volatility > threshold
+volume spikes
+Blunt Reality
+If you don’t control liquidity, whales script your chart.
