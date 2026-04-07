@@ -1,0 +1,41 @@
+# 3. Live Testnet Rollout Plan
+This is where most projects collapse. Timing + sequencing matters.
+Phase 0 — Dry Run (Internal)
+Local fork simulation
+Full commit → reveal → settlement cycle
+Validate entropy + ordering
+Phase 1 — Closed Testnet
+Deploy on Sepolia
+Invite limited wallets
+Stress test:
+commit spam
+invalid reveals
+edge timing
+Phase 2 — Public Testnet (State Activation)
+Run it like a ritual, not a launch.
+Timeline
+Day 1 — State 1–3
+Contracts deployed
+Genesis hash published
+Day 2 — State 4
+Commit window opens
+Day 3 — State 5
+Commit window closes
+Day 4 — State 6
+Reveal phase
+Day 5 — State 7–8
+Entropy injected
+Allocation computed
+Settlement executed
+Day 6 — State 9–12
+Liquidity simulated
+Final state hash published
+Metrics to Track
+Participation rate
+Reveal completion %
+Gas fairness (variance)
+Allocation distribution curve
+Failure Conditions
+Low reveal rate → UX issue
+Entropy predictability → redesign
+Gas spikes → batching failure
