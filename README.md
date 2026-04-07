@@ -1,5 +1,5 @@
 ## SAW PROTOCOL
-# Secure Atomic Wave Protocol: A Cryptographically Deterministic Token Launch Framework with Multi-Source Time Anchoring
+Secure Atomic Wave Protocol: A Cryptographically Deterministic Token Launch Framework with Multi-Source Time Anchoring
 
 1. GitHub Repository Structure
 
