@@ -1,0 +1,74 @@
+# 1.Full Deploy Scripts (Hardhat + Deterministic Pipeline)
+No guesswork. One command = full system deployment, reproducible across networks.
+Install Stack
+Bash
+npm install --save-dev hardhat typescript ts-node ethers dotenv
+Environment Config
+Bash
+RPC_URL=
+PRIVATE_KEY=
+ETHERSCAN_API_KEY=
+Deployment Script (Sequential + State-Aware)
+TypeScript
+// scripts/deploy.ts
+import { ethers } from "hardhat";
+
+async function main() {
+  const [deployer] = await ethers.getSigners();
+
+  console.log("Deploying with:", deployer.address);
+
+  // 1. Deploy Token
+  const Token = await ethers.getContractFactory("SAWToken");
+  const token = await Token.deploy();
+  await token.waitForDeployment();
+
+  // 2. Deploy Launch Contract
+  const Launch = await ethers.getContractFactory("SAWLaunch");
+  const launch = await Launch.deploy(await token.getAddress());
+  await launch.waitForDeployment();
+
+  // 3. Deploy Allocator
+  const Allocator = await ethers.getContractFactory("SAWAllocator");
+  const allocator = await Allocator.deploy();
+  await allocator.waitForDeployment();
+
+  // 4. Deploy Settlement
+  const Settlement = await ethers.getContractFactory("SAWSettlement");
+  const settlement = await Settlement.deploy(
+    await token.getAddress(),
+    await launch.getAddress()
+  );
+  await settlement.waitForDeployment();
+
+  console.log("Deployed:");
+  console.log({
+    token: await token.getAddress(),
+    launch: await launch.getAddress(),
+    allocator: await allocator.getAddress(),
+    settlement: await settlement.getAddress(),
+  });
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+Run Deployment
+Bash
+npx hardhat run scripts/deploy.ts --network sepolia
+Entropy Injection Script
+TypeScript
+// scripts/seedEntropy.ts
+import { ethers } from "hardhat";
+import crypto from "crypto";
+
+async function main() {
+  const launch = await ethers.getContract("SAWLaunch");
+
+  const entropy = crypto.randomBytes(32);
+  const tx = await launch.setEntropy(entropy);
+
+  await tx.wait();
+  console.log("Entropy set:", entropy.toString("hex"));
+}
