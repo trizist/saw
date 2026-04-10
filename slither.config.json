@@ -1,0 +1,7 @@
+{
+  "detectors_to_exclude": "naming-convention,too-many-digits",
+  "exclude_dependencies": true,
+  "solc_remaps": [],
+  "filter_paths": "node_modules,test,scripts",
+  "json": "slither-output.json"
+}

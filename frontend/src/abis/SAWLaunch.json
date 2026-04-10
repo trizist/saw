@@ -1,0 +1,197 @@
+[
+  {
+    "name": "commit",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [{ "name": "commitHash", "type": "bytes32" }],
+    "outputs": []
+  },
+  {
+    "name": "reveal",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      { "name": "amount", "type": "uint256" },
+      { "name": "nonce",  "type": "bytes32" }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "advanceState",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "name": "lockEntropy",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      { "name": "futureBlockHash", "type": "bytes32" },
+      { "name": "drandRound",      "type": "bytes32" },
+      { "name": "btcAnchor",       "type": "bytes32" },
+      { "name": "lockedAtBlock",   "type": "uint256" }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "finalizeEntropy",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "name": "setQuantumTimestamp",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      { "name": "ethBlockTime", "type": "uint256" },
+      { "name": "btcBlockTime", "type": "uint256" },
+      { "name": "ntpConsensus", "type": "uint256" },
+      { "name": "beaconTime",   "type": "uint256" }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "currentState",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint8" }]
+  },
+  {
+    "name": "getStateHash",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [{ "name": "state", "type": "uint8" }],
+    "outputs": [{ "name": "", "type": "bytes32" }]
+  },
+  {
+    "name": "getCommitment",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [{ "name": "participant", "type": "address" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          { "name": "hash",      "type": "bytes32" },
+          { "name": "timestamp", "type": "uint256" },
+          { "name": "revealed",  "type": "bool"    },
+          { "name": "valid",     "type": "bool"    }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "validParticipantCount",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "name": "getValidParticipants",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address[]" }]
+  },
+  {
+    "name": "getFinalStateHash",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32" }]
+  },
+  {
+    "name": "getEntropy",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32" }]
+  },
+  {
+    "name": "getQuantumTimestamp",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32" }]
+  },
+  {
+    "name": "commitWindowStart",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "name": "commitWindowEnd",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "name": "revealWindowEnd",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "name": "ceremonyFinalized",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bool" }]
+  },
+  {
+    "name": "stateTimestamps",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [{ "name": "state", "type": "uint8" }],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "name": "StateAdvanced",
+    "type": "event",
+    "inputs": [
+      { "name": "from",       "type": "uint8",   "indexed": true  },
+      { "name": "to",         "type": "uint8",   "indexed": true  },
+      { "name": "stateHash",  "type": "bytes32", "indexed": false },
+      { "name": "timestamp",  "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "name": "CommitmentSubmitted",
+    "type": "event",
+    "inputs": [
+      { "name": "participant", "type": "address", "indexed": true  },
+      { "name": "commitHash",  "type": "bytes32", "indexed": false },
+      { "name": "timestamp",   "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "name": "CommitmentRevealed",
+    "type": "event",
+    "inputs": [
+      { "name": "participant", "type": "address", "indexed": true  },
+      { "name": "amount",      "type": "uint256", "indexed": false },
+      { "name": "valid",       "type": "bool",    "indexed": false }
+    ]
+  },
+  {
+    "name": "EntropyFinalized",
+    "type": "event",
+    "inputs": [{ "name": "finalEntropy", "type": "bytes32", "indexed": false }]
+  },
+  {
+    "name": "LaunchFinalized",
+    "type": "event",
+    "inputs": [{ "name": "finalStateHash", "type": "bytes32", "indexed": false }]
+  }
+]
