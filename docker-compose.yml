@@ -1,0 +1,82 @@
+version: "3.9"
+
+# ─── SAW Protocol Docker Compose ─────────────────────────────────────────────
+# Services: backend API + frontend (Nginx) + optional local hardhat node
+
+services:
+  # ── Hardhat Local Node ──────────────────────────────────────────────────────
+  hardhat:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx hardhat node
+    ports:
+      - "8545:8545"
+    environment:
+      - NODE_ENV=development
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8545"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["local"]
+
+  # ── Backend API ─────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=4000
+      - ETH_RPC_URL=${ETH_RPC_URL}
+      - SAW_LAUNCH_ADDRESS=${SAW_LAUNCH_ADDRESS}
+      - SAW_ALLOCATOR_ADDRESS=${SAW_ALLOCATOR_ADDRESS}
+      - SAW_SETTLEMENT_ADDRESS=${SAW_SETTLEMENT_ADDRESS}
+      - SAW_GOVERNANCE_ADDRESS=${SAW_GOVERNANCE_ADDRESS}
+      - DRAND_API_URL=${DRAND_API_URL:-https://drand.cloudflare.com}
+      - DRAND_CHAIN_HASH=${DRAND_CHAIN_HASH:-8990e7a9aaed2ffed73dbd7092123d6f289930540d7651336225dc172e51b2ce}
+      - BTC_RPC_URL=${BTC_RPC_URL:-https://blockstream.info/api}
+      - NTP_SERVERS=${NTP_SERVERS:-pool.ntp.org,time.google.com,time.cloudflare.com}
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:3000}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ./backend/logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    depends_on:
+      hardhat:
+        condition: service_healthy
+    profiles: ["local", "production"]
+
+  # ── Frontend (Nginx) ────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_CHAIN_ID=${VITE_CHAIN_ID:-11155111}
+        - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:4000}
+        - VITE_WALLET_CONNECT_PROJECT_ID=${VITE_WALLET_CONNECT_PROJECT_ID}
+        - VITE_SAW_LAUNCH_ADDRESS=${VITE_SAW_LAUNCH_ADDRESS}
+        - VITE_SAW_TOKEN_ADDRESS=${VITE_SAW_TOKEN_ADDRESS}
+        - VITE_SAW_ALLOCATOR_ADDRESS=${VITE_SAW_ALLOCATOR_ADDRESS}
+        - VITE_SAW_SETTLEMENT_ADDRESS=${VITE_SAW_SETTLEMENT_ADDRESS}
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+    profiles: ["production"]
+
+volumes:
+  hardhat_data:

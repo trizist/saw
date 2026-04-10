@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="32" cy="32" r="30" stroke="url(#g1)" stroke-width="2" opacity="0.6"/>
+  <!-- 12-point star (12 states) -->
+  <path d="M32 4 L34.5 20 L48 8 L38 22 L60 20 L46 30 L60 44 L44 36 L48 56 L34.5 44 L32 60 L29.5 44 L16 56 L20 36 L4 44 L18 30 L4 20 L26 22 L16 8 L29.5 20 Z" fill="url(#g1)" opacity="0.3"/>
+  <!-- SAW wave -->
+  <path d="M12 32 Q20 22 28 32 Q36 42 44 32 Q52 22 56 32" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Center dot -->
+  <circle cx="32" cy="32" r="4" fill="url(#g1)"/>
+</svg>
